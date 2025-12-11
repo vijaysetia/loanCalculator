@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loan Calculator</title>
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+    <header class="header">
+      <h1 class="animate" style="animation-delay: 0.1s">Loan Pulse</h1>
+      <p class="animate" style="animation-delay: 0.2s">Real-time Outstanding Balance Calculator</p>
+    </header>
+
+    <div class="container">
+      <!-- Configuration & Inputs -->
+      <div class="card animate" style="animation-delay: 0.3s">
+        <h2 class="section-title">Loan Details</h2>
+        <div class="input-group">
+          <label for="principal">Principal Amount (₹)</label>
+          <input type="number" id="principal" placeholder="e.g. 1000000">
+        </div>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="rate">Interest Rate (%/yr)</label>
+            <input type="number" id="rate" placeholder="e.g. 8.5" step="0.1">
+          </div>
+          <div class="input-group">
+            <label for="interestFreq">Interest Compounding</label>
+            <select id="interestFreq">
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="startDate">Start Date</label>
+          <input type="date" id="startDate">
+        </div>
+      </div>
+
+      <!-- Repayment Manager -->
+      <div class="card animate" style="animation-delay: 0.4s">
+        <h2 class="section-title">Repayments</h2>
+
+        <div class="payment-controls">
+          <div class="payment-type-selector">
+            <button class="btn-tab active" data-type="recurring">Recurring</button>
+            <button class="btn-tab" data-type="onetime">One-time</button>
+          </div>
+
+          <div id="paymentForm" class="payment-form">
+            <div class="input-group">
+              <label>Amount</label>
+              <input type="number" id="payAmount" placeholder="Amount">
+            </div>
+            <div class="input-group">
+              <label>Date / Start Date</label>
+              <input type="date" id="payDate">
+            </div>
+            <div class="input-group" id="payFreqGroup">
+              <label>Frequency</label>
+              <select id="payFreq">
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+            <button id="addPaymentBtn" class="btn-primary">Add Payment</button>
+          </div>
+        </div>
+
+        <div class="payment-list" id="paymentList">
+          <!-- Payment items added here -->
+        </div>
+      </div>
+
+      <!-- Result Section -->
+      <div class="card result-card animate" style="animation-delay: 0.5s">
+        <div class="balance-section">
+          <div class="label-small">Outstanding Balance (Today)</div>
+          <div class="balance-amount" id="balanceDisplay">--</div>
+          <div class="label-small" id="statusMessage">Active</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="label-small">Total Paid</div>
+            <div class="stat-value" id="totalPaidDisplay">--</div>
+          </div>
+          <div class="stat-item">
+            <div class="label-small">Interest Accrued</div>
+            <div class="stat-value" id="totalInterestDisplay">--</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ledger Table -->
+    <div class="card animate full-width" style="animation-delay: 0.6s; margin-top: 2rem;">
+      <div class="table-header">
+        <h2 class="section-title">Amortization Ledger</h2>
+        <select id="tableFreq" class="select-small">
+          <option value="monthly">Monthly View</option>
+          <option value="yearly">Yearly View</option>
+        </select>
+      </div>
+      <div class="table-container">
+        <table id="ledgerTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Interest (+)</th>
+              <th>Payment (-)</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="footer animate" style="animation-delay: 0.5s">
+      &copy; 2025 Loan Pulse. All rights reserved.
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
